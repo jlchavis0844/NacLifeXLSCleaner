@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-
 using ExcelDataReader;
 using System.Data;
 using System.IO;
@@ -150,7 +149,8 @@ namespace NacLifeXLSCleaner {
                     tRow["Sfx Prod"] = newTable.Rows[0]["Sfx Prod"];
                     tRow["Premium"] = newTable.Rows[0]["Premium"];
                     tRow["mmyy"] = newTable.Rows[0]["mmyy"];
-                    tRow["Rate %"] = newTable.Rows[0]["Rate %"];
+                    //tRow["Rate %"] = newTable.Rows[0]["Rate %"];
+                    tRow["Rate %"] = totals.Sum(g => g.Field<double>("Rate %"));
                     tRow["Rate"] = newTable.Rows[0]["Rate"];
                     tRow["Rate2"] = newTable.Rows[0]["Rate2"];
                     tRow["Code"] = newTable.Rows[0]["Code"];
@@ -243,7 +243,7 @@ namespace NacLifeXLSCleaner {
 
         public string GetSavePath() {
 
-            System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.InitialDirectory = "H:\\Desktop\\";
             saveFileDialog1.Filter = "xlsx|*.xlsx";
             saveFileDialog1.FilterIndex = 2;
@@ -256,7 +256,5 @@ namespace NacLifeXLSCleaner {
             //else System.Windows.Application.Exit();
             return "";
         }
-
     }
-
 }
